@@ -10,6 +10,7 @@ export async function findOneOrCreate(
     return this.create({ userId });
   }
 }
+
 export async function findByAge(
   this: ITutorModel,
   min?: number,
