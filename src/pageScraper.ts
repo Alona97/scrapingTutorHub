@@ -58,15 +58,12 @@ const scraperObject = {
       connect();
       try {
         for (const tutor of tutorsObjs) {
-          for (const lessonName of tutor.tutoringSubjects) {
-            let lessonObj = {
-              "subject" : lessonName
-            }
-            await LessonModel.create(lessonObj);
-            console.log(`Created lesson ${lessonObj.subject}`);
-            
-          }
-          tutor.tutoringSubjects = [];
+          const lessonIds = await Promise.all(tutor.tutoringSubjects.map(async (lessonName) => {
+            console.log(`Created lesson ${lessonName}`);
+            const doc = await LessonModel.create({ subject: lessonName });
+            return doc._id;
+          }))
+          tutor.tutoringSubjects = lessonIds;
           await TutorModel.create(tutor);
           console.log(`Created user ${tutor.name}`);
         }

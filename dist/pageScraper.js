@@ -63,14 +63,12 @@ const scraperObject = {
                 database_1.connect();
                 try {
                     for (const tutor of tutorsObjs) {
-                        for (const lessonName of tutor.tutoringSubjects) {
-                            let lessonObj = {
-                                "subject": lessonName
-                            };
-                            yield lesson_model_1.LessonModel.create(lessonObj);
-                            console.log(`Created lesson ${lessonObj.subject}`);
-                        }
-                        tutor.tutoringSubjects = [];
+                        const lessonIds = yield Promise.all(tutor.tutoringSubjects.map((lessonName) => __awaiter(this, void 0, void 0, function* () {
+                            console.log(`Created lesson ${lessonName}`);
+                            const doc = yield lesson_model_1.LessonModel.create({ subject: lessonName });
+                            return doc._id;
+                        })));
+                        tutor.tutoringSubjects = lessonIds;
                         yield tutor_model_1.TutorModel.create(tutor);
                         console.log(`Created user ${tutor.name}`);
                     }
