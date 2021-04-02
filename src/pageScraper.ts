@@ -1,5 +1,6 @@
-import { TutorModel } from "./tutor.model";
+import { TutorModel } from "./tutor/tutor.model";
 import { connect, disconnect } from "./database"
+import { LessonModel } from "./lesson/lesson.model";
 
 const skooliWebSite = "https://www.skooli.com/math-tutor";
 const tutorsObjs = [];
@@ -10,7 +11,7 @@ const scraperObject = {
     await page.setViewport({ width: 1280, height: 1800 });
     console.log(`Navigating to ${this.url}...`);
     await page.goto(this.url);
-    for (let i = 1; i < 15; i++) {
+    for (let i = 1; i < 2; i++) {
       const data = await page.evaluate(() => {
         const tds = Array.from(
           document.querySelectorAll(".tutor-grid-item  > .tutor-grid-item-data")
@@ -57,6 +58,15 @@ const scraperObject = {
       connect();
       try {
         for (const tutor of tutorsObjs) {
+          for (const lessonName of tutor.tutoringSubjects) {
+            let lessonObj = {
+              "subject" : lessonName
+            }
+            await LessonModel.create(lessonObj);
+            console.log(`Created lesson ${lessonObj.subject}`);
+            
+          }
+          tutor.tutoringSubjects = [];
           await TutorModel.create(tutor);
           console.log(`Created user ${tutor.name}`);
         }

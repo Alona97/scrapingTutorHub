@@ -9,8 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const tutor_model_1 = require("./tutor.model");
+const tutor_model_1 = require("./tutor/tutor.model");
 const database_1 = require("./database");
+const lesson_model_1 = require("./lesson/lesson.model");
 const skooliWebSite = "https://www.skooli.com/math-tutor";
 const tutorsObjs = [];
 const scraperObject = {
@@ -21,7 +22,7 @@ const scraperObject = {
             yield page.setViewport({ width: 1280, height: 1800 });
             console.log(`Navigating to ${this.url}...`);
             yield page.goto(this.url);
-            for (let i = 1; i < 15; i++) {
+            for (let i = 1; i < 2; i++) {
                 const data = yield page.evaluate(() => {
                     const tds = Array.from(document.querySelectorAll(".tutor-grid-item  > .tutor-grid-item-data"));
                     return tds.map((td) => {
@@ -62,6 +63,14 @@ const scraperObject = {
                 database_1.connect();
                 try {
                     for (const tutor of tutorsObjs) {
+                        for (const lessonName of tutor.tutoringSubjects) {
+                            let lessonObj = {
+                                "subject": lessonName
+                            };
+                            yield lesson_model_1.LessonModel.create(lessonObj);
+                            console.log(`Created lesson ${lessonObj.subject}`);
+                        }
+                        tutor.tutoringSubjects = [];
                         yield tutor_model_1.TutorModel.create(tutor);
                         console.log(`Created user ${tutor.name}`);
                     }
