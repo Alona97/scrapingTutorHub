@@ -9,6 +9,9 @@ const TutorSchema = new Schema({
     tutoringSubjects: [{
         type: String
     }],
+    areas: [{
+        type: Number
+    }],
 });
 
 TutorSchema.statics.findOneOrCreate = findOneOrCreate;

@@ -6,6 +6,7 @@ export interface Tutor {
     education: string;
     tutoringSubjects: Array<string>;
     availability: string;
+    areas: Array<number>;
 }
 
 

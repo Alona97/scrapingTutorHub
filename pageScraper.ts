@@ -23,13 +23,15 @@ const scraperObject = {
       });
       for (let i = 0; i < data.length; i++) {
         let tutorDataObj = {};
+
         if (isNaN(data[i][0])) {
           tutorDataObj = {
             "name": data[i][0],
             "score": 0,
             "education": data[i][2],
             "tutoringSubjects": data[i][4].split('I can tutor:')[1].split(','),
-            "availability": data[i][5].trim()
+            "availability": data[i][5].trim(),
+            "areas": [getRandomInt(3)]
           };
         }
         else {
@@ -38,7 +40,8 @@ const scraperObject = {
             "score": parseInt(data[i][0]),
             "education": data[i][3],
             "tutoringSubjects": data[i][5].split('I can tutor:')[1].split(','),
-            "availability": data[i][6].trim()
+            "availability": data[i][6].trim(),
+            "areas": [getRandomInt(3)]
           };
         }
         tutorsObjs.push(tutorDataObj);
@@ -66,5 +69,9 @@ const scraperObject = {
 
   },
 };
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 module.exports = scraperObject;

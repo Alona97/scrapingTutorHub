@@ -10,6 +10,9 @@ const TutorSchema = new mongoose_1.Schema({
     tutoringSubjects: [{
             type: String
         }],
+    areas: [{
+            type: Number
+        }],
 });
 TutorSchema.statics.findOneOrCreate = tutor_statics_1.findOneOrCreate;
 TutorSchema.statics.findByAge = tutor_statics_1.findByAge;
