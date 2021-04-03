@@ -11,7 +11,7 @@ const scraperObject = {
     await page.setViewport({ width: 1280, height: 1800 });
     console.log(`Navigating to ${this.url}...`);
     await page.goto(this.url);
-    for (let i = 1; i < 2; i++) {
+    for (let i = 1; i < 13; i++) {
       const data = await page.evaluate(() => {
         const tds = Array.from(
           document.querySelectorAll(".tutor-grid-item  > .tutor-grid-item-data")
@@ -60,7 +60,13 @@ const scraperObject = {
         for (const tutor of tutorsObjs) {
           const lessonIds = await Promise.all(tutor.tutoringSubjects.map(async (lessonName) => {
             console.log(`Created lesson ${lessonName}`);
-            const doc = await LessonModel.create({ subject: lessonName });
+            const doc = await LessonModel.create({
+              subject: lessonName,
+              city: '',
+              minAgeRange: 5,
+              maxAgeRange: 25,
+              classType: ''
+            });
             return doc._id;
           }))
           tutor.tutoringSubjects = lessonIds;

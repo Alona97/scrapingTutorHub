@@ -22,7 +22,7 @@ const scraperObject = {
             yield page.setViewport({ width: 1280, height: 1800 });
             console.log(`Navigating to ${this.url}...`);
             yield page.goto(this.url);
-            for (let i = 1; i < 2; i++) {
+            for (let i = 1; i < 13; i++) {
                 const data = yield page.evaluate(() => {
                     const tds = Array.from(document.querySelectorAll(".tutor-grid-item  > .tutor-grid-item-data"));
                     return tds.map((td) => {
@@ -65,7 +65,13 @@ const scraperObject = {
                     for (const tutor of tutorsObjs) {
                         const lessonIds = yield Promise.all(tutor.tutoringSubjects.map((lessonName) => __awaiter(this, void 0, void 0, function* () {
                             console.log(`Created lesson ${lessonName}`);
-                            const doc = yield lesson_model_1.LessonModel.create({ subject: lessonName });
+                            const doc = yield lesson_model_1.LessonModel.create({
+                                subject: lessonName,
+                                city: '',
+                                minAgeRange: 5,
+                                maxAgeRange: 25,
+                                classType: ''
+                            });
                             return doc._id;
                         })));
                         tutor.tutoringSubjects = lessonIds;
