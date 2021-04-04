@@ -10,7 +10,7 @@ const TutorSchema = new Schema({
         type: String
     }],
     areas: [{
-        type: Number
+        type: String
     }],
 });
 

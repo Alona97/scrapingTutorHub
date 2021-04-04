@@ -11,7 +11,7 @@ const TutorSchema = new mongoose_1.Schema({
             type: String
         }],
     areas: [{
-            type: Number
+            type: String
         }],
 });
 TutorSchema.statics.findOneOrCreate = tutor_statics_1.findOneOrCreate;

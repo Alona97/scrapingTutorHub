@@ -32,7 +32,7 @@ const scraperObject = {
             "education": data[i][2],
             "tutoringSubjects": data[i][4].split('I can tutor:')[1].split(','),
             "availability": data[i][5].trim(),
-            "areas": [getRandomInt(3)]
+            "areas": []
           };
         }
         else {
@@ -42,7 +42,7 @@ const scraperObject = {
             "education": data[i][3],
             "tutoringSubjects": data[i][5].split('I can tutor:')[1].split(','),
             "availability": data[i][6].trim(),
-            "areas": [getRandomInt(3)]
+            "areas": []
           };
         }
         tutorsObjs.push(tutorDataObj);
