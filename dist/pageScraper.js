@@ -39,7 +39,7 @@ const scraperObject = {
                             "score": 0,
                             "education": data[i][2],
                             "tutoringSubjects": data[i][4].split('I can tutor:')[1].split(','),
-                            "availability": data[i][5].trim(),
+                            "availability": true,
                             "areas": []
                         };
                     }
@@ -49,7 +49,7 @@ const scraperObject = {
                             "score": parseInt(data[i][0]),
                             "education": data[i][3],
                             "tutoringSubjects": data[i][5].split('I can tutor:')[1].split(','),
-                            "availability": data[i][6].trim(),
+                            "availability": true,
                             "areas": []
                         };
                     }
