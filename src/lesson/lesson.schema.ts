@@ -6,7 +6,7 @@ const LessonSchema = new Schema({
     city: String,
     minAgeRange: Number,
     maxAgeRange: Number,
-    classType: String,
+    classType: Number,
 });
 
 LessonSchema.statics.findOneOrCreate = findOneOrCreate;

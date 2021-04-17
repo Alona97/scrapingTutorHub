@@ -14,7 +14,7 @@ export async function findOneOrCreate(
 export async function findByAge(
   this: ILessonModel,
   min?: number,
-  max?: number
+  max?: number,
 ): Promise<ILessonDocument[]> {
   return this.find({ age: { $gte: min || 0, $lte: max || Infinity } });
 }

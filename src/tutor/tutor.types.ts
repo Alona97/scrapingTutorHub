@@ -8,6 +8,7 @@ export interface Tutor {
     availability: boolean;
     areas: Array<string>;
     phone?: string;
+    gender?: number;
 }
 
 

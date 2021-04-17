@@ -7,7 +7,7 @@ const LessonSchema = new mongoose_1.Schema({
     city: String,
     minAgeRange: Number,
     maxAgeRange: Number,
-    classType: String,
+    classType: Number,
 });
 LessonSchema.statics.findOneOrCreate = lesson_statics_1.findOneOrCreate;
 exports.default = LessonSchema;

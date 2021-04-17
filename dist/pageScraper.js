@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const tutor_model_1 = require("./tutor/tutor.model");
 const database_1 = require("./database");
 const lesson_model_1 = require("./lesson/lesson.model");
+const tutor_model_1 = require("./tutor/tutor.model");
 const skooliWebSite = "https://www.skooli.com/math-tutor";
 const tutorsObjs = [];
 const scraperObject = {
@@ -22,7 +22,7 @@ const scraperObject = {
             yield page.setViewport({ width: 1280, height: 1800 });
             console.log(`Navigating to ${this.url}...`);
             yield page.goto(this.url);
-            for (let i = 1; i < 13; i++) {
+            for (let i = 1; i < 2; i++) {
                 const data = yield page.evaluate(() => {
                     const tds = Array.from(document.querySelectorAll(".tutor-grid-item  > .tutor-grid-item-data"));
                     return tds.map((td) => {
@@ -40,7 +40,9 @@ const scraperObject = {
                             "education": data[i][2],
                             "tutoringSubjects": data[i][4].split('I can tutor:')[1].split(','),
                             "availability": true,
-                            "areas": []
+                            "areas": [],
+                            "gender": 1,
+                            "phone": "0504588224"
                         };
                     }
                     else {
@@ -50,7 +52,9 @@ const scraperObject = {
                             "education": data[i][3],
                             "tutoringSubjects": data[i][5].split('I can tutor:')[1].split(','),
                             "availability": true,
-                            "areas": []
+                            "areas": [],
+                            "gender": 1,
+                            "phone": "0504588224"
                         };
                     }
                     tutorsObjs.push(tutorDataObj);
@@ -67,10 +71,10 @@ const scraperObject = {
                             console.log(`Created lesson ${lessonName}`);
                             const doc = yield lesson_model_1.LessonModel.create({
                                 subject: lessonName,
-                                city: '',
+                                city: 'Holon',
                                 minAgeRange: 5,
                                 maxAgeRange: 25,
-                                classType: ''
+                                classType: getRandomInt(2)
                             });
                             return doc._id;
                         })));

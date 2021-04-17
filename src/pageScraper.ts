@@ -33,6 +33,7 @@ const scraperObject = {
             "tutoringSubjects": data[i][4].split('I can tutor:')[1].split(','),
             "availability": true,
             "areas": [],
+            "gender": 0,
             "phone": "0504588224"
           };
         }
@@ -44,6 +45,7 @@ const scraperObject = {
             "tutoringSubjects": data[i][5].split('I can tutor:')[1].split(','),
             "availability": true,
             "areas": [],
+            "gender": 1,
             "phone": "0504588224"
           };
         }
@@ -64,10 +66,10 @@ const scraperObject = {
             console.log(`Created lesson ${lessonName}`);
             const doc = await LessonModel.create({
               subject: lessonName,
-              city: '',
+              city: 'Holon',
               minAgeRange: 5,
               maxAgeRange: 25,
-              classType: ''
+              classType: getRandomInt(2)
             });
             return doc._id;
           }))
