@@ -1,7 +1,6 @@
-import { TutorModel } from "./tutor/tutor.model";
-import { connect, disconnect } from "./database"
+import { connect, disconnect } from "./database";
 import { LessonModel } from "./lesson/lesson.model";
-import { emit } from "cluster";
+import { TutorModel } from "./tutor/tutor.model";
 
 const skooliWebSite = "https://www.skooli.com/math-tutor";
 const tutorsObjs = [];
@@ -33,7 +32,8 @@ const scraperObject = {
             "education": data[i][2],
             "tutoringSubjects": data[i][4].split('I can tutor:')[1].split(','),
             "availability": true,
-            "areas": []
+            "areas": [],
+            "phone": "0504588224"
           };
         }
         else {
@@ -43,7 +43,8 @@ const scraperObject = {
             "education": data[i][3],
             "tutoringSubjects": data[i][5].split('I can tutor:')[1].split(','),
             "availability": true,
-            "areas": []
+            "areas": [],
+            "phone": "0504588224"
           };
         }
         tutorsObjs.push(tutorDataObj);

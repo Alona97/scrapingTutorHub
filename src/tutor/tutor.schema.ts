@@ -12,6 +12,7 @@ const TutorSchema = new Schema({
     areas: [{
         type: String
     }],
+    phone: String
 });
 
 TutorSchema.statics.findOneOrCreate = findOneOrCreate;
