@@ -1,0 +1,1 @@
+{"version":3,"file":"lesson.schema.js","sourceRoot":"","sources":["../../src/lesson/lesson.schema.ts"],"names":[],"mappings":";;AAAA,uCAAkC;AAClC,qDAAmD;AAEnD,MAAM,YAAY,GAAG,IAAI,iBAAM,CAAC;IAC5B,OAAO,EAAE,MAAM;IACf,IAAI,EAAE,MAAM;IACZ,WAAW,EAAE,MAAM;IACnB,WAAW,EAAE,MAAM;IACnB,SAAS,EAAE,MAAM;CACpB,CAAC,CAAC;AAEH,YAAY,CAAC,OAAO,CAAC,eAAe,GAAG,gCAAe,CAAC;AAEvD,kBAAe,YAAY,CAAC"}
