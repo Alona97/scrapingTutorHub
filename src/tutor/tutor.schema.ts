@@ -5,7 +5,7 @@ const TutorSchema = new Schema({
     name: String,
     education: String,
     score: Number,
-    availability: String,
+    availability: Boolean,
     tutoringSubjects: [{
         type: String
     }],

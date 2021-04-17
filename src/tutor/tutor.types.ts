@@ -5,7 +5,7 @@ export interface Tutor {
     score: number;
     education: string;
     tutoringSubjects: Array<string>;
-    availability: string;
+    availability: boolean;
     areas: Array<string>;
     phone?: string;
 }
